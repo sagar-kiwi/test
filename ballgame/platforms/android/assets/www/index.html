@@ -1,0 +1,125 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="ball.css">
+</head>
+<body>
+	<div id="screen">
+			<div id="ball"></div>
+				
+	</div>
+	<div id="bar"></div>
+</body>
+<script>
+
+
+	var ob=function() {
+	    	
+	    	var container =document.getElementById("screen");	
+			
+			var containerWidth=container.clientWidth;
+			containerWidth=containerWidth-50;
+			var containerHeight=container.clientHeight;
+			containerHeight=containerHeight-50;
+  			
+  			var bar=document.getElementById('bar');
+			var pos = bar.getBoundingClientRect();
+			console.log(pos);
+			var bar_left=pos.left;
+			 var bar_right=pos.right;
+			var m=5,n=5;
+			
+			var ball=document.getElementById('ball');
+			var ball1=ball.getBoundingClientRect();
+			var ballWidth=ball.clientWidth;
+			var ballHeight=ball.clientHeight;
+			
+			this.initialize=function() {
+				setInterval(game,10);
+			};
+				
+			
+				function game() { 
+				
+					//console.log(ballWidth);
+					console.log(ballHeight);
+
+					if((ballHeight==335))
+					{
+						//alert("hi");
+						if((ballWidth>=bar_left-50)&&(ballWidth<=bar_left+50))	
+						{
+
+							containerHeight=335//containerHeight-100;
+						}
+						else
+						{
+							containerHeight=container.clientHeight-50;
+						}
+					}
+
+					if(ballWidth>containerWidth) {
+						m=m*-1;
+					//self.initialize();
+					}
+					if (ballWidth<0) {
+						m=m*-1;
+					}
+					if(ballHeight>containerHeight) {
+						n=n*-1;
+					}
+					if(ballHeight>350)
+					{
+						alert("game over");
+
+					}
+					if(ballHeight<0) {
+						n=n*-1;
+					}
+					ballWidth=ballWidth+m;
+					ballHeight=ballHeight+n;
+					
+					//console.log(ball1);
+					
+
+					
+					ball.style.left=ballWidth+'px';
+					ball.style.top=ballHeight+'px';
+				}
+
+
+				document.onkeypress=function(e) {
+				//alert();
+								var keycode =e.keyCode;
+				
+								if(keycode==39&&bar_left<425) {
+								bar_left=bar_left+5;
+								//console.log(pos.left);
+								
+								document.getElementById('bar').style.left=bar_left;
+								}
+								if(keycode==37&&bar_left>30) {
+								bar_left=bar_left-5;
+					
+								document.getElementById('bar').style.left=bar_left;
+								}
+
+								
+								if((ballWidth==bar_left)&&(ballHeight==310))
+								{
+									containerWidth=containerWidth-50;
+									containerHeight=containerHeight-50;
+								}
+								}
+				
+			
+		
+			}
+				var hello=new ob();
+				hello.initialize();
+				
+
+
+
+
+</script>
+</html>
